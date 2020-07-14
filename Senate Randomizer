@@ -1,0 +1,32 @@
+import random
+print("Operation Instructions:")
+print("Type in the String name of every Senator and when you are done type in \'-1\'")
+print("Once this process is complete then specify how many senators will select topics")
+print("Once this process is complete then specify the number of bill cycles that are required")
+senator_string = str(input("Please input the name of the senator:"))
+list_of_senators = []
+while(senator_string != "-1"):
+    list_of_senators.append(senator_string)
+    senator_string = str(input("Please input the name of another senator or \'-1\':"))
+
+
+number_of_senators_week = int(input("How Many Senators should pick the topic? "))
+number_cycles = int(input("How Many Cycles? "))
+print("Processing, this might take a few please wait: . . . ")
+total_outputs = []
+weekly_senators = []
+number_cycles_complete = 1
+while(number_cycles_complete <= number_cycles):
+    FAILED = False
+    senators_list = random.choices(list_of_senators, k=number_of_senators_week)
+    for single_senator in senators_list:
+        for single_week in total_outputs:
+            for one_senator in single_week:
+                if one_senator == single_senator:
+                    FAILED = True
+    if FAILED == False:
+        total_outputs.append(senators_list)
+        number_cycles_complete += 1
+    else:
+        pass
+print(total_outputs)
