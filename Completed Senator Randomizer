@@ -1,0 +1,51 @@
+import random
+print("Operation Instructions:")
+print("Type in the String name of every Senator and when you are done type in \'-1\'")
+print("Once this process is complete then specify how many senators will select topics")
+print("Once this process is complete then specify the number of bill cycles that are required")
+list_or_manual = str(input("Do you want to read from the coded list or type in senators manually? Type in the single charachter (List: \"L\", Manually: \"M\")--->"))
+list_of_senators = []
+
+if list_or_manual == "L":
+    print("---Hardcoded List Entry Selected---")
+    list_of_senators = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33']
+else:
+    print("---Manual Entry Selected---")
+    senator_string = str(input("Please input the name of the senator:"))
+    while(senator_string != "-1"):
+        list_of_senators.append(senator_string)
+        senator_string = str(input("Please input the name of another senator or \'-1\':"))
+        
+number_of_senators_week = int(input("How Many Senators should pick the topic? "))
+number_cycles = int(input("How Many Cycles? "))
+print("Processing, this might take a few seconds please wait: . . . ")
+total_outputs = []
+weekly_senators = []
+number_cycles_complete = 1
+while(number_cycles_complete <= number_cycles):
+    FAILED = False
+    senators_list = random.choices(list_of_senators, k=number_of_senators_week)
+    
+    for senator_List_picker in range(number_of_senators_week):
+        senator_extracted = senators_list[senator_List_picker]
+        FAILED_counter = 0
+        
+        for extracted_in_senator_list in senators_list:
+            if senator_extracted == extracted_in_senator_list:
+                if FAILED_counter == 1:
+                    FAILED = True
+                FAILED_counter += 1
+                
+        for extracted_senator_in_total_A in total_outputs:
+            for extracted_senator_in_total in extracted_senator_in_total_A:
+                if extracted_senator_in_total == senator_extracted:
+                    FAILED = True
+                    
+    if FAILED == False:
+        total_outputs.append(senators_list)
+        number_cycles_complete += 1
+        
+    else:
+        pass
+    
+print(total_outputs)
