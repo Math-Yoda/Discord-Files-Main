@@ -1,4 +1,5 @@
 import random
+print("_____-----Made by Senator Libertarian Math Yoda (CRD), for the Bluetopian Legislature-----_____") 
 print("Operation Instructions:")
 print("Type in the String name of every Senator and when you are done type in \'-1\'")
 print("Once this process is complete then specify how many senators will select topics")
